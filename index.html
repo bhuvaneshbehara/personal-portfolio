@@ -1,396 +1,638 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>CoreBlog</title>
-  <meta name="description" content="A modern, responsive, single‑file HTML blog template with dark mode, search, tags and cards." />
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vCard - Personal Portfolio</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
-  <style>
-    :root{
-      --bg: #0b0c10;
-      --panel: rgba(255,255,255,.06);
-      --text: #e9eef5;
-      --muted: #a7b0bd;
-      --brand: #7c5cff;
-      --brand-2: #00e6a7;
-      --ring: 0 0 0 3px rgba(124,92,255,.35);
-      --radius: 16px;
-      --shadow: 0 10px 30px rgba(0,0,0,.35);
-      --card: rgba(255,255,255,.04);
-    }
-    :root.light{ /* light theme tokens */
-      --bg: #f6f7fb;
-      --panel: rgba(255,255,255,.9);
-      --text: #0f172a;
-      --muted: #465066;
-      --brand: #5b34ff;
-      --brand-2: #02c39a;
-      --shadow: 0 10px 25px rgba(16,24,40,.08);
-      --card: #ffffff;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
-      background: radial-gradient(1200px 800px at 10% -20%, rgba(124,92,255,.25), transparent 60%),
-                  radial-gradient(900px 600px at 120% 10%, rgba(0,230,167,.18), transparent 60%),
-                  var(--bg);
-      color:var(--text); line-height:1.6;
-    }
-    a{color:inherit; text-decoration:none}
-    .container{width:min(1120px, 92%); margin:auto}
-
-    /* Header / Nav */
-    header{
-      position:sticky; top:0; backdrop-filter:saturate(140%) blur(10px);
-      background:linear-gradient(180deg, rgba(0,0,0,.35), transparent), var(--panel);
-      border-bottom:1px solid rgba(255,255,255,.07);
-      z-index:50;
-    }
-    .nav{display:flex; align-items:center; justify-content:space-between; padding:14px 0}
-    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.2px}
-    .logo{width:36px;height:36px;border-radius:12px; background:linear-gradient(135deg,var(--brand),var(--brand-2)); box-shadow:0 10px 20px rgba(124,92,255,.3)}
-    .nav-actions{display:flex; align-items:center; gap:10px}
-    .btn{display:inline-flex; align-items:center; gap:8px; padding:10px 14px; border-radius:12px; border:1px solid rgba(255,255,255,.12); background:transparent; color:var(--text); cursor:pointer}
-    .btn:focus-visible{outline:none; box-shadow:var(--ring)}
-    .btn.primary{background:linear-gradient(135deg,var(--brand),var(--brand-2)); border:none; color:#fff}
-
-    /* Hero */
-    .hero{padding:44px 0 22px}
-    .hero h1{font-family:"DM Serif Display", serif; font-size:clamp(32px,6vw,56px); line-height:1.05; margin:0 0 10px}
-    .hero p{margin:0; color:var(--muted)}
-    .toolbar{display:flex; flex-wrap:wrap; gap:12px; margin-top:20px}
-    .search{flex:1 1 260px; display:flex; align-items:center; gap:10px; background:var(--card); border:1px solid rgba(255,255,255,.08); padding:12px 14px; border-radius:14px}
-    .search input{flex:1; border:none; background:transparent; color:var(--text); outline:none}
-    .tags{display:flex; gap:8px; flex-wrap:wrap}
-    .tag{padding:8px 12px; border-radius:999px; font-size:14px; border:1px solid rgba(255,255,255,.12); background:transparent; cursor:pointer}
-    .tag.active{background:linear-gradient(135deg,var(--brand),var(--brand-2)); border:none; color:#fff}
-
-    /* Grid */
-    .grid{display:grid; grid-template-columns:repeat(12, 1fr); gap:18px; margin:28px 0 60px}
-    .card{grid-column:span 12; background:var(--card); border:1px solid rgba(255,255,255,.08); border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow); transition:transform .18s ease, box-shadow .18s ease}
-    .card:hover{transform:translateY(-4px)}
-    .media{aspect-ratio:16/9; background:#111; display:block; width:100%; object-fit:cover}
-    .content{padding:18px}
-    .eyebrow{color:var(--muted); font-size:13px; letter-spacing:.32px; text-transform:uppercase}
-    .title{font-weight:750; font-size:22px; line-height:1.25; margin:8px 0}
-    .excerpt{color:var(--muted); margin:0 0 12px}
-    .meta{display:flex; align-items:center; gap:10px; font-size:13px; color:var(--muted)}
-    .avatar{width:26px;height:26px;border-radius:50%; background:linear-gradient(135deg,var(--brand),var(--brand-2))}
-    .readmore{color:#5b34ff;cursor: pointer;display:inline-block;margin-top: 8px;}
-    
-
-    /* Layout breakpoints */
-    @media (min-width:720px){ .card{grid-column:span 6} }
-    @media (min-width:1024px){ .card{grid-column:span 4} }
-
-    /* Footer */
-    footer{padding:40px 0; color:var(--muted)}
-    .footer-grid{display:flex; flex-wrap:wrap; gap:18px; justify-content:space-between; align-items:center}
-    .small{font-size:13px}
-
-    /* Article modal */
-    dialog{width:min(900px, 92%); border:none; border-radius:18px; padding:0; overflow:hidden; background:var(--card); color:var(--text)}
-    dialog::backdrop{background:rgba(0,0,0,.5)}
-    .post-hero{aspect-ratio:16/7; object-fit:cover; width:100%}
-    .post-body{padding:20px 22px 28px}
-    .post-body h2{font-family:"DM Serif Display", serif; font-size:clamp(26px,4.8vw,40px); margin:0 0 8px}
-    .post-body .by{color:var(--muted); margin-bottom:18px}
-    .post-body p{margin:14px 0}
-    .close{position:absolute; top:12px; right:12px; border:1px solid rgba(255,255,255,.18); background:rgba(0,0,0,.35); color:#fff; border-radius:10px; padding:8px 10px; cursor:pointer}
-
-    /* Utility */
-    .hidden{display:none;}
-  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 </head>
+
 <body>
-  <header>
-    <div class="container nav">
-      <a class="brand" href="#" aria-label="CoreBlog Home">
-        <span><img src="./assets/IMAGES/Blog logo.png" width="150" height="150"></span>
-      </a>
-      <div class="nav-actions">
-        <button class="btn" id="themeToggle"></button>
+
+  <!--
+    - #MAIN
+  -->
+
+  <main>
+
+    <!--
+      - #SIDEBAR
+    -->
+
+    <aside class="sidebar" data-sidebar>
+
+      <div class="sidebar-info">
+
+        <figure class="avatar-box">
+          <img src="./assets/images/BHUVAN.png" alt="Behara Bhuvaneswara Rao" width="60">
+        </figure>
+
+        <div class="info-content">
+          <h1 class="name" title="Behara Bhuvaneswara Rao"><br>Behara <br>Bhuvaneswara <br>Rao</h1>
+
+          <li> <p class="title"><br>Aspiring VLSI Physical Design Engineer <br> 
+            <br>Passion for VLSI and Core Electronics <br>
+            <br>VLSI-BACKEND<br></p></li>
+        </div>
+
+        <button class="info_more-btn" data-sidebar-btn>
+          <span>Show Contacts</span>
+
+          <ion-icon name="chevron-down"></ion-icon>
+        </button>
+
+      </div>
+
+      <div class="sidebar-info_more">
+
+        <div class="separator"></div>
+
+        <ul class="contacts-list">
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="mail-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Email</p>
+
+              <a href="mailto:richard@example.com" class="contact-link">bhuvaneshbehara@gmail.com</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="phone-portrait-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Phone</p>
+
+              <a href="tel:+91 7036145543" class="contact-link">+91 (703) 6145543</a>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="calendar-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Birthday</p>
+
+              <time datetime="1982-06-23">July 22, 2002</time>
+            </div>
+
+          </li>
+
+          <li class="contact-item">
+
+            <div class="icon-box">
+              <ion-icon name="location-outline"></ion-icon>
+            </div>
+
+            <div class="contact-info">
+              <p class="contact-title">Location</p>
+
+              <address>1-129, Digi Veedhi, Thotavada Village, Burja Mandal, Srikakulam District, Andhra Pradesh</address>
+            </div>
+
+          </li>
+
+        </ul>
+
+        <div class="separator"></div>
+
+        <ul class="social-list">
+
+          <li class="social-item">
+            <a href="#" class="social-link">
+              <ion-icon name="logo-facebook"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="#" class="social-link">
+              <ion-icon name="logo-twitter"></ion-icon>
+            </a>
+          </li>
+
+          <li class="social-item">
+            <a href="#" class="social-link">
+              <ion-icon name="logo-instagram"></ion-icon>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+
+    </aside>
+
+
+
+
+
+    <!--
+      - #main-content
+    -->
+
+    <div class="main-content">
+
+      <!--
+        - #NAVBAR
+      -->
+
+      <nav class="navbar">
+
+        <ul class="navbar-list">
+
+          <li class="navbar-item">
+            <button class="navbar-link  active" data-nav-link>About</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Technicalskills</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Portfolio</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Blog</button>
+          </li>
+
+          <li class="navbar-item">
+            <button class="navbar-link" data-nav-link>Contact</button>
+          </li>
+
+        </ul>
+
+      </nav>
+
+
+
+
+
+      <!--
+        - #ABOUT
+      -->
+
+      <article class="about  active" data-page="about">
+
+        <header>
+          <h2 class="h2 article-title">About me</h2>
+        </header>
+
+        <section class="about-text">
+          <p>
+            Hi, I am Behara Bhuvaneswara Rao, an aspiring physical design engineer with a Btech in Electrical and Electronics Engineering from GMRIT,
+            Andhra Pradesh.I have hands-on experience in ASIC Physical design Implementation through training at VLSIGURU institute, Bangalore,where I worked on a block-level 28nm project.With training in RTL-to-GDSII flow, I have practical experience in floorplanning, power planning,
+            placement, CTS, routing, and timing closure. And skilled in Synopsys ICC2, Design Compiler, and PrimeTime, with strong knowledge of STA,CMOS, and digital design concepts. I am eager to contribute to silicon tapeouts and continue growing as a backend engineer in the semiconductor indutry.
+          </p>
+
+        </section>
+
+
+        <!--
+          - service
+        -->
+          <section class="timeline">
+
+          <div class="title-wrapper">
+            <div class="icon-box">
+            <ion-icon name="book-outline"></ion-icon>
+            </div>
+
+            <h3 class="h3">Academic Details</h3>
+          </div>
+
+          <ol class="timeline-list">
+
+            <li class="timeline-item">
+
+              <h3 class="h3 timeline-item-title">Z.P.H School, Thotavada</h3>
+
+              <span>2017 — 2018</span>
+              <span>Aggregate or percentage: 93%</span>  
+              <p class="timeline-text">
         
-      </div>
-    </div>
-  </header>
+              </p>
 
-  <main class="container">
-    <section class="hero">
-      <h1>Learn Core Electronics and VLSI Backend  </h1>
-      <p></p>
+            </li>
 
-      <div class="toolbar">
-        <div class="search" role="search">
-          <span>🔎</span>
-          <input id="searchInput" placeholder="Search posts… (e.g. VLSI, HTML, Career)" aria-label="Search posts" />
-        </div>
-        <div class="tags" aria-label="Filter by tag">
-          <button class="tag active" data-tag="all">All</button>
-          <button class="tag active" data-tag="vlsi">VLSI</button>
-          <button class="tag active" data-tag="electronics/cmos">ELECTRONICS/CMOS</button>
-          <button class="tag active" data-tag="interview questions">INTERVIEW QUESTIONS</button>
-          <button class="tag active" data-tag="advanced topics">ADVANCED TOPICS</button>
-        </div>
-      </div>
-    </section>
+            <li class="timeline-item">
 
-    <section id="grid" class="grid" aria-live="polite">
-      <!-- Post Card Template examples -->
-     <article class="card" data-tags="vlsi" data-title="Input files for PD">
-        <img src="./assets/IMAGES/Input files.png" alt="Inputs" width="350" height="250"loading="lazy" />
-        <div class="content">
-          <div class="eyebrow">COREBlog</div>
-          <h3 class="title">Input files for PD</h3>
-          <p class="excerpt">Input files play a crucial part in the development of chips. There are two kinds of files in PD flow. They are technology and design-related files.</p>
-          <span class="readmore" onclick="toggleContent('card1')">Read More</span></p></div>
-       <div id="card1" class="full-content hidden">
-        <ul>
-            <li>Design Related files</li>
-           <ol>
-            <li>Gate-level netlist (.v)</li>
-            <li>Constraints file (.sdc)</li>
-            <li>Power intent file (.upf)</li>
-            <li>Scandef (.scandef)</li>
-            <li>GDSII file (.gds)</li>
+              <h4 class="h4 timeline-item-title">A.P Model School and junior College, O.V. Peta</h4>
+
+              <span>2018 — 2020</span>
+              <span>Stream: M.P.C</span>
+              <span>Aggregate or Percentage:95.9%</span>
+              <p class="timeline-text">
+              
+              </p>
+
+            </li>
+
+            <li class="timeline-item">
+
+              <h4 class="h4 timeline-item-title">GMRIT College, Rajam</h4>
+
+              <span>2020 — 2024</span>
+              <span>Branch: Electrical and Electronics Engineering</span>
+              <span>Aggregate or Percentage: 72.77%</span>
+              <p class="timeline-text">
+                
+              </p>
+
+            </li>
+
+          
           </ol>
-         <li>Technology related files</li>       
-         <ol>
-            <li>Logical Libraries (.lib or .db)</li>
-            <li>Physical Libraries (.LEF)</li>
-            <li>Technology file (.tf)</li>
-            <li>Tluplus file(.tlu+)</li>
-            <li>Map file (.map)</li>
-         </ol>
-         <li><h2>About Design Related Files</h2></li>
-        <ol><li>Gate-level netlist(.V)</li>
-         <p>&nbsp;This file includes verilog code that makes logic connections between cells. It also contains instances of standard cells, module port names, macro pin connections, and network connections. It belongs to the structural or gate-level model.</p> 
-         <li>Constraints file(.sdc)</li>
-         <p>&nbsp;SDC is a short form of synopsys design Constraints. It is in the format of IEEE 1801 format. It contains clock definitions, timing exceptions, design rule constraints(like max_fanout, max_trans),operating conditions,timing constraints.</p>
-          <li>Power intent file(.upf)</li>
-          <p>The acronym UPF stands for unified power format. It includes information about the power domain, power supply, power nets, power switches, and low-power approaches such as level shifter placement, isolation cell position, and power state table.  It also includes level shifters, isolation cells, retention registers, and always-on buffers. </p>
-        <li>Scandef (.scandef):</li>
-        <p>It carries scan-chain information. The scandef was created by the DFT team. It provides scan cell reordering limitations as well as scan enable flops for clocks..</p>
-       <li>GDSII file(.gds):</li>
-       <p>&nbsp; The abbreviation "GDS" stands for graphic data system.  It comprises information on physical and time constraints for the complete design that is ready for tapeout.  This GDSII file is sent to the foundry, which manufactures the chip depending on the information in it.</p>  
-      </ol>
-        </ul>
-       </div>
-          <div class=""><span class=""></span><span></span><span>·</span><time>Aug 2025</time></div>
-        </div>
-      </article>
+        
+        </section>
 
-       <article class="card" data-tags="vlsi" data-title="About Technology related files">
-        <img src="./assets/IMAGES/Input files.png" alt="Input files" width="350" height="250" loading="lazy" />
-        <div class="content">
-          <div class="eyebrow">COREBlog</div>
-          <h3 class="title">About Technology related files</h3>
-          <p class="excerpt">Technology files are important in PD.  This technology file includes design rules, information on metal, and more.  These files help to close the gap between the foundary and design.</p>
-          <span class="readmore" onclick="toggleContent('card2')">Read More</span></p></div>
-       <div id="card2" class="full-content hidden">
-        <ul>
-        <li>Technology related files</li>       
-         <ol>
-          <li>Logical Libraries(.lib or .db):
-        <p>&nbsp; Lib file is a short form of liberty timing file.It is a human-redable format. It contains cell related information like cell name, PG pin name, Area of cell, Leakage power, pin details etc. It also contain timing related information like Setup, hold, timing arcs, transition, wire-load models,Look-up tables for timing and power calculation.</p>
-        </li>
-        <li>Physical Libraries (.LEF):
-            <p>&nbsp; The LEF file is the abstract layout information of std cells. It contains information related to geometry of each cell like cell size, cell name, symmetry of cell,pin information (like pin name, direction of pin). It also contain antenna gate information and rectangular coordinates for metal layer.</p>
-        </li>
-        <li>Technology File(.tf):
-            <p>&nbsp; It contains the information about metal layers, vias and their design rules.It contains information like color and stipple details of metal layers,tile height and width of the std cells,Pitch of metal layer,minwidth of metal layer,blink,pattern,metal layer name,via contactcode,via cut spacing rules,design rules(like windowSize,mindensity,maxdensity,minEnclosure) for metal layers.</p>
-      </li>
-      <li>Tluplus(.tlu+):
-        <p>It contains RC parasitics information to calculate the net delay. Based on different algorithms this file will generate.This file used at placement stage.</p>
-      </li>
-      <li>Map File(.map):
-        <p>It used for mapping the files. For example, the ITF file has the name metal1, but because tlu+ only has M1 at the moment, we utilized this map file.</p>
-      </li>
-         </ol>
-        </ul>
-       </div>
-          <div class=""><span class=""></span><span></span><span></span><time>Aug 2025</time></div>
-        </div>
-      </article>
+          <section class="skill">
+          <h3 class="h3 skills-title">Why should Hire Me?</h3>
+          <ul class="skills-list">
+            <li class="skills-item">
+              <div class="skills-icon-box">
+                <img src="./assets/images/chip.jpg" alt="chip icon" width="40">
+              </div>
+                <h4 class="h4 skills-item-title">Hands-on Experience </h4>
+                <p class="h5 skills-item-text">
+                  Proficient in RTL-GDSII flow,gained hands-on experience with Synopsys tools like ICC2 Shell,DC shell,Prime Time, StarRC. Identifying and resolving design rule violations and timing violations (setup/hold) across various stages of the flow. Developing upf file for multi-voltage Design.
+                </p>
+            </li>
 
+             <li class="skills-item">
+              <div class="skills-icon-box">
+                <img src="./assets/images/newtech.jpg" alt="newtech icon" width="40">
+              </div>
+                <h4 class="h4 skills-item-title">Learning about new technologies</h4>
+
+                <p class="h5 skills-item-text">
+                  Exploring advanced technologies in VLSI, and stay updated with industry trends.
+                </p>
+                </li>
+
+                <li class="skills-item">
+
+                <div class="skills-icon-box">
+                <img src="./assets/images/core electronics.jpg" alt="core electronics icon" width="40">
+                </div>
+                <h4 class="h4 skills-item-title">Core Electronics</h4>
+                <p class="h5 skills-item-text">
+                Good Knowloedge at Core electronics, semiconductor devices and circuits,8085 & 8086 Microprocessors,RISC-V Architecture.
+                </p>
+                </li>
+                </ul>
+               </section>
+              </article>
+      <!--
+        - #TECHNICALSKILLS
+      -->
+
+      <article class="technicalskills" data-page="technicalskills">
+      <header>
+      <br> <h2 class="h2 article-title">TECHNICAL SKILLS</h2> <br>
+       </header>
+      <section class="h5 technicalskills">
+        <div class="h5 technicalskills-text">
+        <p>
+          <br> &#9830   ASIC synthesis             : Logical aware and Physical aware synthesis.<br>
+                <br>&#9830  ASIC Physical Design Flow  : Floorplanning, Power Planning, Placement, CTS,Routing, Timing Closure, ECO. <br>
+                <br>&#9830  EDA Tools                  : Synopsys ICC2, Design Compiler, PrimeTime, StarRC. <br>
+                <br>&#9830  Analysis                   : Static Timing Analysis (STA), Congestion, DRC/LVS.<br>
+                <br>&#9830  Programming/Scripting      : TCL, Linux (Shell), Gvim. <br>
+                <br>&#9830  Digital/CMOS               : Flip-flops, Latches, Setup/Hold, Low-Power Design Techniques. <br>
+      <br>&#9830  Computer Architecture & Organization : ARM architecture and their operation, RISC-V architecture and their operation, Processor Design steps, Pipelining concept and hazards.<br>
+        </p></div>
+      </section>
       
-      <article class="card" data-tags="vlsi tips" data-title="Macro Guidelines for Floorplanning">
-        <img src="./assets/IMAGES/Macro guidlines.png" alt="VLSI floorplan abstract" width="350" height="250" loading="lazy" />
-        <div class="content">
-          <div class="eyebrow">COREBlog</div>
-          <h3 class="title">Macro Guidelines for Floorplanning</h3>
-          <p class="excerpt">Macro placement is a crucial step in PD.
-           <span class="readmore" onclick="toggleContent('card3')">Read More</span></p></div>
-      <div id="card3" class="full-content hidden">
-        <ul>
-          <li>Group the macros by hierarchy.</li>
-           &nbsp;<b>Why:</b> If you place macros not by same group hierarchy then wirelength increases which leads to timing violations. And Module Splitting happen which leads to global congestion.
-          <li>Place the macros based on flylines.</li>
-          &nbsp;<b>Why:</b>The wirelength will be reduced if you position macros according to flylines (since you will know the wire length).Congestion reduction will occur. And to improve the timing closure.
-          <li>Give the macro channel.</li>
-          &nbsp;<b>Why:</b>If you provide a space between macros, buffers or inverters are added for optimization or timing correction.  Furthermore, to minimize macro pin congestion and to make macro pin routing easier. In addition, power-related violations, such as power straps, will travel over the channel. 
-          <li>Avoid stacking.</li>
-          &nbsp;<b>Why:</b> If you avoid stacking macros, you have more routing resources, which means less routing congestion.
-          <li>Avoid notches.</li>
-          &nbsp;<b>Why:</b> There is still space if you are not avoiding notches.  This gap necessitates an additional mask during manufacture, which results in additional expenses.  
-          <li>Avoid Criss-cross.</li>
-          &nbsp;<b>Why:</b> If you connecting macros using the Criss-cross approach, the tool will automatically redirect the routing net to another path with a larger length, resulting in routing congestion and timing concerns. 
-          <li>Avoid blocking of ports.</li>
-          &nbsp;<b>Why:</b> If you block ports, you'll need extra routing resources to connect buffers or inverters if there are soft blockages between them.  
-          <li>Apply keep-out margin.</li>
-          &nbsp;<b>Why:</b>If you add a keep-out margin, the macro pin will be free, resulting in no short circuit.  Also useful for power-related violations, such as avoiding the breakdown of macro ring metal layers. 
-          <li>Apply routing blockages over the macro.</li>
-          &nbsp;<b>Why:</b> If you place a routing blockage over the macros, no short circuits occur.
-          <h2>Conclusion</h2>
-          <li>By following above guidelines you can achieve less congestion, optimized routing, and good for further stages.</li>
+      <div class="certifications-title">
+        <br><h2 class="h2 article-title">Certifications</h2><br>
+       <ul class="certifications-list ">
+       <li class="certifications-item">
+        <a href="#">
+          <br><img src="./assets/images/VLSI TRAINING COMPLETED CERTIFICATE.png" alt="certification image" width="400" height="400"><br> 
+        </a>
+        </li>
+       <li class="certifications-item">
+        <a href="#">
+          <br><img src="./assets/images/NSIC CERTIFICATE.png" alt="certification image" width="400" height="400"><br>
+         </a>
+        </li>
         </ul>
       </div>
-          <div class=""><span class=""></span><span></span><span></span><time>Aug 2025</time></div>
-      </article>
+        </article>
+
+
+
+
+
+      <!--
+        - #PORTFOLIO
+      -->
+
+      <article class="portfolio" data-page="portfolio">
+
+        <header>
+          <h2 class="h2 article-title">Portfolio</h2>
+        </header>
+
+        <section class="projects">
+
+          <ul class="filter-list">
+
+            <li class="filter-item">
+              <button class="active" data-filter-btn>All</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>VLSI PROJECTS</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn>ACADEMIC PROJECTS</button>
+            </li>
+
+            <li class="filter-item">
+              <button data-filter-btn></button>
+            </li>
+
+          </ul>
+
+          <div class="filter-select-box">
+
+            <button class="filter-select" data-select>
+
+              <div class="select-value" data-selecct-value>Select category</div>
+
+              <div class="select-icon">
+                <ion-icon name="chevron-down"></ion-icon>
+              </div>
+
+            </button>
+
+            <ul class="select-list">
+
+              <li class="select-item">
+                <button data-select-item>All</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>VLSI PROJECTS</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item>ACADEMIC PROJECTS</button>
+              </li>
+
+              <li class="select-item">
+                <button data-select-item></button>
+              </li>
+
+            </ul>
+
+          </div>
+
+          <ul class="project-list">
+
+            <li class="project-item  active" data-filter-item data-category="vlsi projects">
+              <a href="./Untitled-1.html" target="_blank"> 
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+                  <img src="./assets/images/power planning.jpg" alt="BLOCK-LEVEL" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">"Block-Level Physical Design Implementation of ORCATOP deign using 28nm TSMC"</h3>
+
+                <p class="project-category">vlsi projects
+                  
+                </p>
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="vlsi projects">
+              <a href="./chiptop.html" target="_blank">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/Chiptop.jpg" alt="ChipTop" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">"ChipTop-Full-Chip (RTL to Gate-level netlist)synthesis using Design compiler"</h3>
+
+                <p class="project-category">vlsi projects
+              </p>
+              </a>
+            </li>
+
+            <li class="project-item  active" data-filter-item data-category="academic projects">
+              <a href="./dual converter.html" target="_blank">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/circuit diagram.png" alt="circuit" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Design and implementation of dual converter by using microcontroller with dc motor as a load</h3>
+
+                <p class="project-category">academic projects</p>
+
+              </a>
+            </li>
+            <li class="project-item  active" data-filter-item data-category="academic projects">
+              <a href="./Modelling.html" target="_blank">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/Fuel cell.png" alt="" loading="lazy">
+                </figure>
+
+                <h3 class="project-title">Modelling and simulation of fuel cell system for electric vehicle integration</h3>
+
+                <p class="project-category">academic projects</p>
+
+              </a>
+            </li>
+
+            
+
+            <li class="project-item  active" data-filter-item data-category="applications">
+              <a href="#">
+
+                <figure class="project-img">
+                  <div class="project-item-icon-box">
+                    <ion-icon name="eye-outline"></ion-icon>
+                  </div>
+
+                  <img src="./assets/images/" alt="" loading="lazy">
+                </figure>
+
+                <h3 class="project-title"></h3>
+
+                <p class="project-category"></p>
+
+              </a>
+            </li>
+
+            
+
+          </ul>
+
+        </section>
 
       
+      </article>
+      <!--
+        - #BLOG
+      -->
 
-      <article class="card" data-tags="interview questions" data-title="Basic VLSI and synthesis interview questions" >
-        <img src="./assets/IMAGES/interview.png" alt="interview" width="350" height="250" loading="lazy" />
-        <div class="content">
-          <div class="eyebrow">COREBlog</div>
-          <h3 class="title">Basic VLSI and synthesis interview questions</h3>
-          <p class="excerpt">The following article covers basic vlsi and syntheis interview questions from the beginning.</p>
-           <span class="readmore" onclick="toggleContent('card4')">Read More</span></p></div>
-           <div id="card4" class="full-content hidden">
-           <ul>
-            <h2>Interview questions for basic vlsi and synthesis</h2>
-            <ol>
-              <li>What is VLSI? Why does VLSI play such a vital role nowadays?</li>
-              <li>What is the difference between VLSI and PCB?</li>
-              <li>What are the various design styles in VLSI?</li>
-              <li>What is ASIC flow design?  How does it vary from the FPGA flow design?</li>
-              <li>What is the APR flow?  What stages are there in the flow?</li>
-              <li>What is a technode?  Which tech nodes are used and how do they differ from one another?</li>
-              <li>What is synthesis?</li>
-              <li>What are the different types of synthesis, and how do they differ?</li>
-              <li>Which files are used during logical-aware synthesis?</li>
-              <li>Which files are used during Physical-aware syntheis?</li>
-              <li>What are the steps involved in synthesis?</li>
-              <li>What are the various libraries used in synthesis?</li>
-              <li>What are the link and target libraries?  What are the differences between them?</li>
-              <li>Which optimization methods are applied in the synthesis process?</li>
-              <li>What does the analyze command do?</li>
-              <li>What does the elaborate command do?</li>
-              <li>What is unresolved refernces?</li>
-              <li>What is mapping in syntheis? Explain various types of mapping?</li>
-              <li>What is the difference between generic mapping and technology mapping?</li>
-              <li>What is the difference between compile and compile_ultra command?</li>
-               <li>What is lint?</li>
-              <li>What are the sanity checks do in synthesis?</li>
-              <li>What does the check_library command do?</li>
-              <li>What does the check_timing command do?</li>
-              <li>What does the uniquify command do?</li>
-              <li>What reports do you generate during the synthesis stage?</li>
-              <li>What is the main goal of synthesis?</li>
-              <li>What is gate-level netlist?</li>
-              <li>What is the difference between synthesized netlist and gate-levek netlist?</li>
-              <li>After synthesis, what output files did you receive?</li>
-            </ol>
-           </ul>
-           </div>
-          <div class=""><span class=""></span><span></span><span></span><time>August 2025</time></div>
-        </div>
+      <article class="blog" data-page="blog">
+
+        <header>
+          <h2 class="h2 article-title">Blog</h2>
+        </header>
+
+        <section class="blog-posts">
+
+          <ul class="blog-posts-list">
+
+            <li class="blog-post-item">
+              <a href="../../MYBLOG/index.html" target="_blank">
+
+                <figure class="blog-banner-box">
+                  <img src="../../MYBLOG/assets/IMAGES/Blog logo.png" width="250" height="250"   alt="BLOG" loading="lazy">
+                </figure>
+
+                <div class="blog-content">
+
+                  <div class="blog-meta">
+                    <p class="blog-category"></p>
+
+                    <span class="dot"></span>
+
+                    <time datetime=""></time>
+                  </div>
+
+                  <h3 class="h3 blog-item-title">BLOG FOR CORE ELECTRONICS AND VLSI-BACKEND</h3>
+
+                  <p class="blog-text">
+                    
+                  </p>
+
+                </div>
+
+              </a>
+            </li> 
       </article>
 
 
 
-      
+
+
+      <!--
+        - #CONTACT
+      -->
+
+      <article class="contact" data-page="contact">
+
+        <header>
+          <h2 class="h2 article-title">Contact</h2>
+        </header>
+
+        <section class="mapbox" data-mapbox>
+          <figure>
+            <iframe
+              src="https://www.google.com/maps/place/Thotavada,+Andhra+Pradesh+532445/@18.5159609,83.8406731,17z/data=!4m15!1m8!3m7!1s0x3a3c6f560d35fbdd:0x5b810c1aebb4b2fe!2sThotavada,+Andhra+Pradesh+532445!3b1!8m2!3d18.5159609!4d83.8406731!16s%2Fg%2F1hjh6gx7k!3m5!1s0x3a3c6f560d35fbdd:0x5b810c1aebb4b2fe!8m2!3d18.5159609!4d83.8406731!16s%2Fg%2F1hjh6gx7k?entry=ttu&g_ep=EgoyMDI1MDgxOC4wIKXMDSoASAFQAw%3D%3D"
+              width="400" height="300" loading="lazy"></iframe>
+          </figure>
+        </section>
+
+        <section class="contact-form">
+
+          <h3 class="h3 form-title">Contact Form</h3>
+
+          <form action="#" class="form" data-form>
+
+            <div class="input-wrapper">
+              <input type="text" name="fullname" class="form-input" placeholder="Full name" required data-form-input>
+
+              <input type="email" name="email" class="form-input" placeholder="Email address" required data-form-input>
+            </div>
+
+            <textarea name="message" class="form-input" placeholder="Your Message" required data-form-input></textarea>
+
+            <button class="form-btn" type="submit" disabled data-form-btn>
+              <ion-icon name="paper-plane"></ion-icon>
+              <span>Send Message</span>
+            </button>
+
+          </form>
+
+        </section>
+
+      </article>
+
+    </div>
+
   </main>
 
-  <footer>
-    <div class="container footer-grid">
-      <div class="small">© <span id="year"></span> COREBlog </div>
-    </div>
-  </footer>
 
-  <!-- Article Modal -->
-  <dialog id="postModal">
-    <button class="close" aria-label="Close">✕</button>
-    <img class="post-hero" alt="Post cover" />
-    <div class="post-body">
-      <h2 id="postTitle"></h2>
-      <div class="by"></div>
-      <div id="postContent">
-        <p>This is a placeholder article body. Replace this content with your real post text or wire the modal to navigate to dedicated article pages. You can keep everything single‑file for simplicity, or split into separate HTML files per post.</p>
-        <p>Tip: host this template on GitHub Pages, Netlify or Vercel. Update the cards above to match your topics and images.</p>
-      </div>
-    </div>
-  </dialog>
 
-  <script>
-    // Theme toggle with localStorage
-    const root = document.documentElement;
-    const themeToggle = document.querySelector('#themeToggle');
-    const stored = localStorage.getItem('theme');
-    const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
-    if(stored === 'light' || (!stored && prefersLight)) root.classList.add('light');
-    themeToggle.addEventListener('click', ()=>{
-      root.classList.toggle('light');
-      localStorage.setItem('theme', root.classList.contains('light') ? 'light' : 'dark');
-    });
 
-    // Dynamic year
-    document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Search + tag filter
-    const searchInput = document.getElementById('searchInput');
-    const tags = document.querySelectorAll('.tag');
-    const cards = [...document.querySelectorAll('.card')];
-    let activeTag = 'all';
 
-    function applyFilters(){
-      const q = searchInput.value.trim().toLowerCase();
-      cards.forEach(c=>{
-        const inTag = activeTag==='all' || c.dataset.tags.includes(activeTag);
-        const inText = !q || c.dataset.title.toLowerCase().includes(q) || c.dataset.tags.includes(q);
-        c.classList.toggle('hidden', !(inTag && inText));
-      });
-    }
+  <!--
+    - custom js link
+  -->
+  <script src="./assets/js/script.js"></script>
 
-    tags.forEach(t=> t.addEventListener('click', ()=>{
-      tags.forEach(x=>x.classList.remove('active'));
-      t.classList.add('active');
-      activeTag = t.dataset.tag;
-      applyFilters();
-    }));
+  <!--
+    - ionicon link
+  -->
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-    searchInput.addEventListener('input', applyFilters);
-    
-    // Read More toggle
-    function toggleContent(id) {
-    const content = document.getElementById(id);
-    content.style.display = content.style.display === "block" ? "none" : "block";
-  }
-
-    // Open article modal from card click
-    const modal = document.getElementById('postModal');
-    const closeBtn = modal.querySelector('.close');
-    const cover = modal.querySelector('.post-hero');
-    const head = modal.querySelector('#postTitle');
-    const by = modal.querySelector('.by');
-
-    document.getElementById('grid').addEventListener('click', (e)=>{
-      const card = e.target.closest('.card');
-      if(!card) return;
-      cover.src = card.querySelector('img.media').src;
-      cover.alt = card.querySelector('img.media').alt;
-      head.textContent = card.querySelector('.title').textContent;
-      by.textContent = `By ${card.dataset.author}`;
-      modal.showModal();
-    });
-    closeBtn.addEventListener('click', ()=> modal.close());
-
-    
-  </script>
 </body>
+
 </html>
