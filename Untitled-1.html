@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vCard - Personal Portfolio</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="project-title">
+    <center><br><h2>Block-Level Physical Design Implementation of ORCATOP Design using 28nm TSMC</h2><br></center>
+
+    <!-- Main Cover Image -->
+    <div class="project-image">
+       <br><center> <img src="./assets/images/O1.jpg" alt="ORCATOP Cover" width="70%" height="70%"></center><br>
+      <center><br><p><em>Figure 1: ORCATOP Physical Design Overview</em></p><br></center>
+    </div>
+
+    <br><h2>Project Description:</h2><br>
+    <p><br>
+      Designed and implemented the ORCATOP block-level physical design using 28nm technology, achieving timing closure with zero DRC/LVS violations, and delivering a sign-off ready netlist and GDS.
+    </p><br>
+
+    <br><h2>Keywords Used:</h2><br>
+    <br><div class="keywords">
+      Gate-level netlist, UPF/CPF (Low Power Design), Constraints (SDC),.ndm (.lib + .lef + .tf), Die/Core Area, Aspect Ratio, Placement Blockages, IO Pad Placement, Macro Placement, Power Planning (VDD/VSS grid, Straps, Rings, Mesh), Standard Cell Placement, Pre-CTS Optimization, Congestion Analysis, Cell Padding, Density Analysis, 
+      Clock Buffers/Inverters, Skew Optimization, Latency Balancing, Clock Gating Cells, CTS Exceptions (stop pins, don’t touch), Global Routing, Detailed Routing, Routing Layers (M1, M2…MRDL), Via Optimization, Crosstalk & Electromigration, Setup/Hold Violation Fixing, Transition/Capacitance Violations, Cell Upsizing/Downsizing, Vt Swapping (HVT/LVT/SVT), ECO, STA, IR Drop Analysis, EM Analysis, DRC, LVS, Extraction (SPEF/RC), Synopsys ICC2, Design Compiler, PrimeTime, StarRC.
+    </div><br>
+
+    <br><h2>Key Steps in the Project:</h2><br>
+    <ol>
+      <br><li><b>step-1: Importing Design:</b> During this phase, we are providing input files such as.ndm (lib+.lef+.tf). And create the design environment by defining libraries and block names. <br>
+        <br><figure>
+          <center><img src="./assets/images/import_script.jpg" alt="Import Design" width="550" height="550"></center>
+          <center><br><figcaption>Figure 2: Importing Design into Synopsys ICC2</figcaption><br></center>
+        </figure><br>
+      </li>
+      <br><li><b>step-2:Floorplanning:</b> During this phase, we are establishing the die area, core area. Performing pin placement, macro placement with proper alignment and spacing. Create voltage area for multi-voltage domains. And the placement of physical-only cells (tap cells, boundary cells).<br>
+        <br><figure>
+          <br><center><img src="./assets/images/Die and core area.jpg" alt="Floorplan View" width="550" height="550"><br>
+            <center><figcaption>Figure 3: Die and core area</figcaption></center>
+         <center><br> <img src="./assets/images/Macro placement.jpg" alt="Floorplan View" width="550" height="550"></center><br>
+          <center><figcaption>Figure 4: Macro placement and voltage area creation</figcaption></center>
+          <center><br> <img src="./assets/images/physical only cells.jpg" alt="Floorplan View" width="550" height="550"></center><br>
+          <center><figcaption>Figure 5: Placing Physical only cells </figcaption></center>
+        </figure><br>
+      </li>
+      <br><li><b>step-3:Sanity checks:</b>  In this step, we are conducting a series of sanity checks including pin placement, macro-placement, voltage area construction, and physical-only cells.<br>
+      </li>
+      <br><li><b>step-4:Power Planning:</b> In this stage, we are creating power grid network is created to distribute the power uniformly to each part. we are creating the PG pattern, PG strategies, VIA rules to achieve good IR drop performance and optimized power consumption.<br>
+        <br><figure>
+          <center><img src="./assets/images/power planning.jpg" alt="Power Grid" width="550" height="550"></center>
+          <br><center><figcaption>Figure 6: Power grid structure</figcaption></center><br>
+        </figure><br>
+      </li>
+      <br><li><b>step-5:Mega Sanity checks:</b> In this step, we are doing mega sanity check for both floorplanning and powerplanning which is called as pre_placement_stage sanity check.<br> 
+      </li>
+      <br><li><b>step-6:Placement:</b> In this stage, we are pulling the std cells into defined core region. Optimized placement will be done based on congestion-driven and timing-driven strategies.<br>
+        <br><figure>
+          <br><center><img src="./assets/images/placement of std cells.jpg" alt="Placement View" width="550" height="550"></center><br>
+         <br><center> <figcaption>Figure 7: Standard cell placement</figcaption></center><br>
+         <br><center><img src="./assets/images/pla script.jpg" alt="Placement View" width="550" height="550"></center><br>
+         <br><center> <figcaption>Figure 8: script for placement</figcaption></center><br>
+         <br><center><img src="./assets/images/pla 2 script.jpg" alt="Placement View" width="550" height="550"></center><br>
+         <br><center> <figcaption>Figure 9: Script for placement</figcaption></center>
+        </figure><br>
+      </li>
+      <br><li><b>step-7:Mega Sanity checks:</b> In this step, we are doing mega sanity check for entire placement stage which is called as pre_clock_tree_stage sanity check.<br>
+      </li>
+      <br><li><b>step-8:CTS:</b> In this stage, we are building the clock-trees to meet target skew, target insertion delay, target max_trans, target max_cap constraints.<br>
+        <br><figure>
+          <br><center><img src="./assets/images/c2.jpg" alt="Clock Tree" width="550" height="550"></center><br>
+          <br><center><figcaption>Figure 10: Clock Tree Synthesis (CTS)</figcaption></center><br>
+          <br><center><img src="./assets/images/c1.jpg" alt="Placement View" width="550" height="550"></center><br>
+         <br><center> <figcaption>Figure 11: CTS</figcaption></center><br>
+         <br><center><img src="./assets/images/clk1.jpg" alt="Clock Tree" width="550" height="550"></center><br>
+          <br><center><figcaption>Figure 12: script for CTS</figcaption></center><br>
+          <br><center><img src="./assets/images/clk2.jpg" alt="Clock Tree" width="550" height="550"></center><br>
+          <br><center><figcaption>Figure 13: script for CTS</figcaption></center><br>
+        </figure><br>
+      </li>
+      <br><li><b>step-9:Mega Sanity checks:</b> In this step, we are doing mega sanity check for entire CTS stage which is called as pre_route_stage sanity check.<br>  
+      </li>
+      <br><li><b>step-10:Routing:</b> In this stage, we are building real connections between std cells, macros and I/O pins. Ensure DRC clean routing with optimized congestion and minimal RC delay.<br>
+        <br><figure>
+          <br><center><img src="./assets/images/Rou1.jpg" alt="route" width="550" height="550"></center><br>
+          <br><center><figcaption>Figure 14: Routing</figcaption></center><br>
+          <br><center><img src="./assets/images/rou2.jpg" alt="route" width="550" height="550"></center><br>
+          <br><center><figcaption>Figure 15: Routing</figcaption></center><br>
+          <br><center><img src="./assets/images/R1.jpg" alt="route" width="550" height="550"></center><br>
+          <br><center><figcaption>Figure 16: script for routing</figcaption></center><br>
+        </figure><br>
+      </li>
+      <br><li><b>step-11:Sign-off:</b> In this stage, we are performing all checks like DRC, timing violations, LVS. Ensure design is timing-closed, clean DRC/LVS and ready for tape-out.<br>
+        <br><figure>
+          <br><center><img src="./assets/images/Finalized setup and hold.png" alt="sign off" width="550" height="550"></center><br>
+          <br><center><figcaption>Figure 16: Finalized Timing closure</figcaption></center><br>
+        </figure><br>
+      </li>
+    </ol>
+    <br> <h2>Challenges Faced in the project:</h2>
+    <p>
+       <br>&bull; Faced challenges in congestion control,CTS skew, multi-corner timing closure, and sign-off DRC/LVS, fixing max transition, capacitance, fanout violations,Placing macros and standard cells to minimize congestion and wirelength,Designing a robust power grid (straps/meshes) while balancing IR-drop.
+    </p>
+    <br> <h2>Fixes for above challenges:</h2>
+    <p>
+       <br>&star;Fixes for Setup violations:
+       Path Grouping,Bound Creation, Magnet Placement, Vt swapping(HVT to LVT in data path),Upsizing the combo cells,Removing delay buffers in combo path.<br>
+      <br>&star;Fixes for Hold violations:
+           Vt swapping(LVT to HVT in data path), Adding delay buffers in data path, removing delay buffers in clock path, Downsizing the combo cells.<br>
+      <br>&star;Fixes for congestion:
+      Bound creation, cell padding(for cell density congestion), Applying Blockages(for pin density congestion), Change the floorplan<br>     
+      <br>&star;Fixes for Crosstalk:
+      Double spacing, Shielding, Metal Hopping, Break the net by adding another metal layer.<br>
+      <br>&star;Fixes for Antenna:
+      Metal Hopping, Adding antenna diode.<br>
+      <br>&star;Fixes for DRV violations(max_trans, max_cap):
+      Upsizing the driver cell, Vt swapping, Inserting buffers<br>
+      <br>&star;Fixes for Electromigration:
+      Apply NDR rules, Metal jumping, increase the width of metal layer.<br>
+    </p>
+    <br><h2>Conclusion</h2><br>
+    <br><p>
+      The project successfully completed the ORCATOP block-level physical design at 28nm TSMC node. All timing and design rule targets were met, achieving a signoff-ready layout suitable for tape-out.
+    </p><br>
+  </div>
+
+  </body>
+
+</html>

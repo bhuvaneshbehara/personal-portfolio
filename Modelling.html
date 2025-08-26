@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vCard - Personal Portfolio</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="project-title">
+    <br><center><h2>Modelling and simulation of fuel cell system for electric vehicle integration</h2><br></center>
+
+    <!-- Main Cover Image -->
+    <div class="project-image">
+      <center><img src="./assets/images/Fuel cell.png" alt="" width="50%" height="50%"></center>
+      <br><center><p><em>Figure 1: Schematic Diagram of PEM fuel cell</em></p></center><br>
+    </div>
+    <h2>Project objective:</h2>
+    <p><br>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In this project, we analyse fuel cell voltage, current, and other crucial parameters for electric vehicle (EV) integration, this research explores modelling and simulation methodologies. System dynamics,proton exchange membrane activity, and electrochemical processes are precisely predicted by extensive computational modelling. By optimizing system performance, economy, and reliability under a range of operating situations, the study hopes to make it easier for fuel cell technology to be seamlessly integrated into the EV space. This research advances the viability and adoption of fuel cell powered electric vehicles and speeds up the development of sustainable transportation solutions by properly estimating voltage and current outputs together with other relevant properties. 
+    </p><br>
+    <h2>Project Introduction:</h2>
+    <p><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Fuel cell vehicles offer a sustainable alternative to fossil fuels, reducing greenhouse gas emissions and dependence on oil. Hydrogen is the most promising fuel, though infrastructure costs remain a challenge. Modeling and simulating fuel cell voltage, current, heat, and flow—using CFD, electrochemical, and system-level approaches—are essential for optimizing performance and enabling cleaner, more efficient electric vehicle technologies.</p><br>
+
+    <h2>Keywords Used: </h2>
+    <div class="keywords">
+     <br>Fuel cell, Computational Approaches, Mathematical Models.<br>
+    </div>
+    <br><h2>Modelling of Fuel Cell:</h2><br>
+    <figure>
+       <center><img src="./assets/images/Fuel cell modelling.png" alt="components" width="40%" height="40%"></center>
+         <br><center><p><em>Figure 2: Static Model of PEM Fuel Cell Using MATLAB </em></p></center>
+    </figure>
+    <ol>
+        <br><p>&nbsp;&nbsp;&nbsp;Fuel cells are electrochemical conversion devices that produce electricity directly from the chemical energy of an oxidant and a fuel. The PEMFC's basic schematic diagram shown in fig.1. A fuel cell and a battery are similar in that they both have two electrodes and an electrolyte. Fuel cells are therefore one of the greatest substitutes for reducing the use of fossil fuels. There are several categories for fuel cells. Solid oxide fuel cells (SOFC), phosphoric acid fuel cells (PAFC), molten carbonate fuel cells (MCFC), and proton exchange membrane fuel cells (PEMFC) are more popular types of fuel cells.Because PEMFC operates at lower temperatures and has a higher power density than other types of FC systems, it is used in this work. PEMFC, the most well-known fuel cell, is therefore ideal for housing applications and provides a guarantee for medium power range applications. The electrochemical process of PEM fuel cells begins on the anode side, where flow plate channels bring in H2 molecules. Catalyst at the anode splits hydrogen into H+ and e-.Here, e-travels to the cathode via an external electrical circuit while H+ flows through membranes. At the cathode, heat and water H2O are produced when hydrogen protons H+ and electrons e-use a catalyst to mix with oxygen O2.</p>
+    </ol>
+    <br><h2>Different voltage components in fuel cell model:</h2><br>
+     <ol>
+     <li>Open Circuit Voltage: </li>
+     <br><p>&nbsp;&nbsp;&nbsp;The following Newtonian equation represents the open circuit voltage, sometimes referred to as the thermodynamic reversible potential. </p>
+     <figure>
+       <br><center> <img src="./assets/images/eq-1.png" alt="equation" width="30%" height="30%"></center>
+     </figure>
+     <li>Ohmic Losses Voltage (Vohmic):</li>
+     <br><p>&nbsp;&nbsp;&nbsp;Ohm's law can be used to express the voltage drop that results from the passage of ions through the membrane and electrons through the electrically conducting fuel cell components. </p>
+     <figure>
+       <br><center> <img src="./assets/images/eq-2.png" alt="equation" width="30%" height="30%"></center>
+     </figure>
+     <li>Activation Over Losses Voltage (Vact):</li>
+     <br><p>&nbsp;&nbsp;&nbsp;A specific amount of energy is required to initiate a chemical reaction. The voltage drop will be non-linear as a result. Both the anode and the cathode experience these losses. The Tafel Equation describes these losses. </p>
+     <figure>
+       <br><center> <img src="./assets/images/eq-3.png" alt="equation" width="30%" height="30%"></center>
+     </figure>
+     <li> Concentration Over Voltage (Vconc) :</li>
+     <br><p>&nbsp;&nbsp;&nbsp;Reactant gas consumption at the catalyst layers causes concentration gradients, which alter the reactants' partial pressure and impact the fuel cell voltage. The equation that follows describes it. </p>
+     <figure>
+       <br><center> <img src="./assets/images/eq-4.png" alt="equation" width="30%" height="30%"></center>
+     </figure>
+    </ol>
+
+    <br> <h2>I-V Characteristics curve of PEM fuel cell single stack :</h2>
+    <figure>
+        <br> <center> <img src="./assets/images/I-V.png" alt="I-V" width="50%" height="50%"></center>
+        <br><center><p><em>Figure 3:-V Characteristics curve of PEM fuel cell single stack</em></p></center>
+    </figure>
+    <p>
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Figure 3 displays the I-V characteristics curve of a single stack PEM fuel cell. The fuel cell's V-I curve features are divided into three primary zones. The ohmic region is the regular operating area. By connecting fuel cells in series, the high voltage is produced.  Nevertheless, if the fuel cells are linked in series, the system as a whole will stop functioning if one fails, making them less reliable.  Although the efficiency of fuel cells is not as great as that of the Carnot cycle, it is still an advantage over internal combustion engines.  Considering that a fuel cell converts chemical energy directly into electrical energy, its efficiency is just 40–50%. Heat is the sort of power that is lost but is easily recovered and put to use. Co-generation is one of PEMFCs' main benefits.  <br>
+    </p>
+
+
+    <br><h2>Results and Discussions:</h2><br>
+    <figure>
+        <br> <center> <img src="./assets/images/Simulation.png" alt="I-V" width="50%" height="50%"></center>
+        <br><center><p><em>Figure 4: Simulation Model of Fuel Cell </em></p></center>
+    </figure>
+    <figure>
+        <br> <center> <img src="./assets/images/G-1.png" alt="I-V" width="50%" height="50%"></center>
+        <br><center><p><em>Figure 5: At input voltage of 6KW-45VDC under PEMFC </em></p></center>
+    </figure>
+    <figure>
+        <br> <center> <img src="./assets/images/G-2.png" alt="I-V" width="50%" height="50%"></center>
+        <br><center><p><em>Figure 6: At input voltage of 50KW-625VDC under PEMFC </em></p></center>
+    </figure>
+    <br><p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Simulation of fuel cell electric vehicles (FCEVs) offers vital new insights into their efficacy, performance, and feasibility as a mass market technology.  Complex computer models enable researchers to investigate a variety of parameters, including fuel cell efficiency, range, and overall system dynamics.  These models help improve FCEV design, identify difficulties, and develop plans to increase cost and dependability.  They provide a methodology for analyzing the environmental effect of FCEVs, comparing them to battery-electric and combustion engine cars.  Improving modeling and simulation approaches is crucial for accelerating the transition to fuel cell-powered, environmentally friendly transportation solutions as technology advances.
+    </p>
+  </div>
+
+  </body>
+
+</html>

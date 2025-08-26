@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vCard - Personal Portfolio</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="project-title">
+    <br><center><h2>ChipTop-Full-Chip (RTL to Gate-level netlist)synthesis using Design compiler</h2><br></center>
+
+    <!-- Main Cover Image -->
+    <div class="project-image">
+      <center><img src="./assets/images/Chiptop.jpg" alt="ChipTop Cover" width="50%" height="50%"></center>
+      <br><center><p><em>Figure 1: ChipTop Overview</em></p></center><br>
+    </div>
+
+    <h2>Project Description:</h2>
+    <p><br>
+      Implemented full-chip(ChipTop) synthesis using design compiler, converting heirarchical RTL to gate-level netlist which is technology dependent.
+    </p><br>
+
+    <h2>Keywords Used: </h2>
+    <div class="keywords">
+     <br> Link library, Target library, synthetic library, Analyze, Elaborate, link, logical synthesis,compile, compile_ultra, unresolved references, constraints, area optimization, power optimization, uniquify, Gate-level netlist, RTL verilog code <br>
+    </div>
+
+    <br><h2>Key Steps in the Project:</h2><br>
+    <ol>
+      <br><li>step-1: Specifying Libraries: In this stage, we are specifying libraries like link library, target library,symbolic library,synthetic library.Link library for linking the design or resolving references,target libraries for mapping the cells, symbolic libraries for represent cells in design schematics, synthetic library for best speed and area.<br>  
+        <figure>
+         <center> <br><img src="./assets/images/libraries.png" alt="library" width="650" height="350"></center><br>
+          <center><figcaption>Figure 2: Specifying libraries</figcaption></center>
+        </figure>
+      </li>
+      <li><br>step-2: Read Design :In this stage, we are providing rtl files to read the verilog code.<br>  
+        <figure>
+          <br><center><img src="./assets/images/verilog.png" alt="rtl" width="450" height="350"></center><br>
+          <br><center><figcaption>Figure 3: Specifying RTL files</figcaption></center><br>
+        </figure>
+      </li>
+      <li><br>step-3: Analyze: In this stage, tool check the errors in verilog code.<br>
+        <figure>
+          <br><center><img src="./assets/images/analyze.png" alt="analyze" width="750" height="250"></center><br>
+          <br><center><figcaption>Figure 4: Analyze the code</figcaption></center><br>
+        </figure>
+      </li>
+      <li><br>step-4: Elaborate: In this stage, automatically tool converts the code into muxes, flip-flops, registers.<br>
+        <figure>
+          <br><center><img src="./assets/images/elaborate.png" alt="elaborate" width="350" height="150"></center><br>
+          <center><figcaption>Figure 5: elaborate command</figcaption></center>
+          <br><center><img src="./assets/images/elaborate2.jpg" alt="elaborate" width="350" height="150"></center><br>
+          <center><figcaption>Figure 6: elaborate the top module</figcaption></center>
+        </figure>
+      </li>
+      <li><br>step-5: Link: In this stage, tool Checks for unresolved references.<br>
+        <figure>
+          <br><center><img src="./assets/images/link.png" alt="link" width="350" height="150"></center><br>
+          <br><center><figcaption>Figure 7: Link command </figcaption></center><br>
+          <br><center><img src="./assets/images/link2.jpg" alt="link" width="350" height="150"></center><br>
+          <br><center><figcaption>Figure 8: Linking the design </figcaption></center><br>
+        </figure>
+      </li>
+      <li><br>step-6: Defining design constraints: In this stage, we are defining design rule constraints and design optimization constraints.<br> 
+      </li>
+      <li><br>step-7: Sanity checks: In this stage, we are doing sanity checks based on given constraints.<br>
+        <figure>
+          <br><center><img src="./assets/images/area.jpg" alt="Sanity Checks" width="350" height="150"></center><br>
+          <br><center><figcaption>Figure 9: sanity check</figcaption></center><br>
+        </figure>
+      </li>
+      <li><br>step-6: Synthesize and optimize the design: In this stage, the tool optimizing the design based on PPA by giving command compile and compile_ultra.<br>
+        <figure>
+          <br><center><img src="./assets/images/compile.jpg" alt="compile" width="350" height="150"></center><br>
+          <br><center><figcaption>Figure 10:compile_ultra </figcaption></center><br>
+        </figure>
+      </li>
+      <li><br>step-7: Analyze and resolve design problems: In this stage,  Design Compiler can generate numerous reports, such as area, constraint, and timing reports, on the synthesis and optimization results. we use the reports to analyze and resolve any design problems or to improve synthesis results.<br>
+        <figure>
+          <br><center><img src="./assets/images/qor 1.jpg" alt="qor" width="350" height="150"></center><br>
+          <br><center><figcaption>Figure 11: Overall qor report</figcaption></center><br>
+          <br><center><img src="./assets/images/qor.jpg" alt="qor" width="350" height="150"></center><br>
+          <br><center><figcaption>Figure 11.1: Overall qor report</figcaption></center><br>
+        </figure>
+      </li>
+    </ol>
+    <br> <h2>Challenges Faced in the project:</h2>
+    <p>
+       <br>Faced challenges in power optimization, resolved through iterative synthesis optimization, mismatches between RTL and synthesized netlist due to optimizations.<br>
+    </p>
+    <br> <h2>Optimization Techniques in the project:</h2>
+    <p>
+<br> Automatic ungrouping, Boundary optimization, High-level optimization(arithmetic simplifications and resource sharing), controlling optimization(HDL code directly to a single multiplexer or a tree of multiplexer from target library), Adaptive retiming, Pipelined-logic retiming, sequential mapping(register inferencing and automatically removing redudant regitsers).  
+    </p>
+    <br><h2>Conclusion</h2><br>
+    <p>
+      The project successfully converting from RTL to gate-level netlist with optimized PPA. And it readiness to PnR flow.
+    </p>
+  </div>
+
+  </body>
+
+</html>

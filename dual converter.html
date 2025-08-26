@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>vCard - Personal Portfolio</title>
+
+  <!--
+    - favicon
+  -->
+  <link rel="shortcut icon" href="./assets/images/logo.ico" type="image/x-icon">
+
+  <!--
+    - custom css link
+  -->
+  <link rel="stylesheet" href="./assets/css/style.css">
+
+  <!--
+    - google font link
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+<div class="project-title">
+    <br><center><h2>Design and implementation of dual converter by using microcontroller with dc motor as a load</h2><br></center>
+
+    <!-- Main Cover Image -->
+    <div class="project-image">
+      <center><img src="./assets/images/circuit diagram.png" alt="" width="50%" height="50%"></center>
+      <br><center><p><em>Figure 1: Circuit diagram of the Project </em></p></center><br>
+    </div>
+    <h2>Project objective:</h2>
+    <p><br>
+     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A microcontroller-based system provides flexibility for the installation of closed loop operation by raising or reducing the firing angle for the dual convertor, allowing the speed of the DC motor to be changed regardless of supply fluctuation and load variation.  In twin converters with non-circulating current, one converter operates at a time, while the other is momentarily blocked from conducting by delaying firing pulses to the thyristors.  Because only one converter runs at a time, reactors between them are unnecessary.  The document provides instructions on how to create regulated power supply and zero crossing detectors for estimating the firing angle using converters.  Control circuits are designed to read certain input parameters.
+    </p><br>
+    <h2>Project Introduction:</h2>
+    <p><br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Using integrated circuits, microprocessors, microcontrollers, and embedded chips in electrical and electronic applications minimizes their size, cost, and complexity.  Because microcontrollers are programmable, a single circuit may perform many purposes by merely altering the instructions rather than the hardware.  This has resulted in widespread use in research, technology, and industry.  AC-to-DC conversion is prevalent in power electronics since most systems are AC-powered, yet DC drives are still employed for their easy speed and direction control.  A dual converter is used to regulate the speed and direction of DC motors precisely.  A dual converter is made up of two complete bridge converters that are connected back to back, one for forward and one for reverse operation.Unlike single-phase full converters, which can only operate in two directions, dual converters can operate in four directions, making them ideal for high-power variable-speed drives.  The positive current converter handles forward current, whereas the negative converter handles reverse current.
+    </p><br>
+
+    <h2>Keywords Used: </h2>
+    <div class="keywords">
+     <br> Cascaded H-bridge (CHB) converter, DC fast charger, DC-DC power converters, Dual active bridge (DAB), energy storage, fast charging station,integrated chargers, levels 1, 2, and 3 chargers, conductive and inductive charging, plug-in electric vehicles (PEVs).<br>
+    </div>
+    <br><h2>components used in the Project:</h2><br>
+    <figure>
+       <center><img src="./assets/images/components.png" alt="components" width="30%" height="30%"></center>
+         <br><center><p><em>Figure 2: Components used in the Project</em></p></center>
+    </figure>
+    <ol>
+        <p>8051 microcontroller,Button array, 12volts step-down transformer, rectifier, 5Volts volatge regulator(L7805), Motor Driver(L293D),Dc motor, LCD display,Opto-coupler, MOSFET.</p>
+    </ol>
+    <br><h2>Explanation of Block Diagram:</h2><br>
+    <figure>
+         <center><img src="./assets/images/BLOCK.png" alt="block" width="30%" height="30%"></center>
+     <br><center><p><em>Figure 3: Block Diagram of the Project</em></p></center>
+    </figure>
+     <ol>
+      <br>&starf;&nbsp; When 1-phase,230V supply is applied to the transformer, it step down the input voltage to 12V.<br>
+      <br>&starf;&nbsp; Now the bridge rectifier converts AC output of the transformer to DC.	The filter circuit filters out the ripples in the DC output of the rectifier.<br>
+      <br>&starf;&nbsp; The regulator in the circuit regulates the input voltage 5V. Because we use electronic equipment which require the accurate for its operation.<br>
+      <br>&starf;&nbsp; If the input to the circuit is more than 5V it leads to damage the circuit, if it is less then 4V the components does not operate.<br>
+      <br>&starf;&nbsp; Output of the power supply board is connected to the 8051 microcontrollers. Port-1 pin (10) is connected to the positive terminal of the driver circuit.<br>
+      <br>&starf;&nbsp; Supply pin of port-1 is connected to the negative terminal of the driver circuit.<br>
+      <br>&starf;&nbsp; The port-2 pins (12,13,14,15,16) of the micro controller is connected to the control switches. These switches give the flexibility to increase and decrease the speed as well as reverse the speed.<br>
+      <br>&starf;&nbsp; Port-3 pins are connected to the mosfet circuit.  Gate circuit of the mosfet is triggered by the opto-couplers.<br>
+      <br>&starf;&nbsp; Port-3 pins (25,26) are connected to the driver circuit Enable1, Enable2 pins.<br>
+      <br>&starf;&nbsp; Mosfet terminal point is connected to the ground pin of the driver circuit. The output of the motor driver is connected to the DC gear motor.
+    </ol>
+    <br><h2>Pin diagram of microcontroller:</h2><br>
+    <figure>
+         <center><img src="./assets/images/micro controller pin diagram.png" alt="pin" width="30%" height="30%"</center>
+     <br><center><p><em>Figure 4: Pin Diagram of the microcontroller</em></p></center>
+    </figure>
+    <ol>
+        <br>&starf;&nbsp;<b>1–8:Port 1:</b>&nbsp;Each of these pins can be used as either input or output. Also, pins 1 and 2 (P1.0 and P1.1) have special functions associated with Timer 2.<br>
+        <br>&starf;&nbsp;<b>9:Reset Signal:</b>&nbsp; High logical state on this input halts the MCU and clears all the registers. positive voltage impulse on this pin resets the MCU. Depending on the device's purpose and environs,<br>this pin is usually connected to the push-button, reset-upon-start circuit or a brown out reset circuit.<br>
+        <br>&starf;&nbsp;<b>10-17:Port 3:</b>&nbsp; As with Port 1, each of these pins can be used as universal input or output.<br>
+        <br>&starf;&nbsp;<b>Pin 10:RXD:</b>&nbsp; Serial input for asynchronous communication or serial output for synchronous communication.<br>
+        <br>&starf;&nbsp;<b>Pin 11:TXD:</b>&nbsp; Serial output for asynchronous communication or clock output for synchronous communication.<br>
+        <br>&starf;&nbsp;<b>Pin 12:INT0:</b>&nbsp; Input for interrupt 0.<br>
+        <br>&starf;&nbsp;<b>Pin 13: INT1:</b>&nbsp; Input for interrupt 1.<br>
+        <br>&starf;&nbsp;<b>Pin 14:T0</b>&nbsp; Clock input of counter 0.<br>
+        <br>&starf;&nbsp;<b>Pin 15:T1</b>&nbsp; Clock input of counter 1.<br>
+        <br>&starf;&nbsp;<b>Pin 16:WR</b>&nbsp; Signal for writing to external (add-on) RAM memory.<br>
+        <br>&starf;&nbsp;<b>Pin 17:RD</b>&nbsp; Signal for reading from external RAM memory.<br>
+        <br>&starf;&nbsp;<b>18-19:X2 and X1:</b>&nbsp; Input and output of internal oscillator. Quartz crystal controlling the frequency commonly connects to these pins.<br>
+        <br>&starf;&nbsp;<b>21- 28:Port 2:</b>&nbsp; If external memory is not present, pins of Port 2 act as universal input/output. If external memory is present, then these pins serve as the location of the higher address byte, i.e. addresses A8 – A15.<br>
+        <br>&starf;&nbsp;<b>29:PSEN:</b>&nbsp; MCU activates this bit (brings to low state) upon each reading of byte (instruction) from program memory. If external ROM is used for storing the program, PSEN is directly connected to its control pins.<br>
+        <br>&starf;&nbsp;<b>30:ALE:</b>&nbsp; Before each reading of the external memory, MCU sends the lower byte of the address register (addresses A0 – A7) to port P0 and activates the output ALE.During the second part of the mechanical MCU cycle, signal on ALE is off, and port P0 is used as Data Bus.<br> 
+        <br>&starf;&nbsp;<b>31:EA:</b>&nbsp; Bringing this pin to the logical state zero designates the ports P2 and P3 for transferring addresses regardless of the presence of the internal memory.<br>
+        <br>&starf;&nbsp;<b>32-39:Port0:</b>&nbsp; Similar to Port 2, pins of Port 0 can be used as universal input/output, if external memory is not used. If external memory is used, P0 behaves as address output (A0 – A7) when ALE pin is at high logical level, or as data output (Data Bus) when ALE pin is at low logical level.<br>
+        <br>&starf;&nbsp;<b>40:VCC:</b>&nbsp; Power +5V<br>
+    </ol>
+    <br> <h2>Scope Of Project in The Real World:</h2>
+    <p>
+<br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Recent improvements in microcontroller technology have resulted in self-contained devices capable of much more than simple processing.  Peripheral functions that are critical to high-speed, real-time control can now be integrated with a microprocessor on a single controller chip. These include high-speed data collecting, analog-to-digital conversion, timing (including sampling rates), multiplexing, and high-speed digital data output.  Microcontrollers handle high-speed control duties as well as microprocessor calculation at a reasonable cost and may be readily integrated into a larger control system.<br>
+    </p>
+    <br><h2>Conclusion</h2><br>
+    <p>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;In order to regulate the speed of a DC machine (producing and driving), we examined the orientation and mode of operation of a dual converter in this project.  Two independent inverters allow the DC motor to run in all four directions.  Downtime is not necessary when operating in a moving condition.  As a result, the velocity shift is smooth and instantaneous.  Using a microcontroller-based system, which offers a lot of design freedom, allows a DC motor to run at a variable speed despite supply and load variations by changing the discharge angle for a dual converter. In today's business and industrial settings, power electrical uses, especially those involving AC-DC converters, are ubiquitous. 
+    </p>
+  </div>
+
+  </body>
+
+</html>
